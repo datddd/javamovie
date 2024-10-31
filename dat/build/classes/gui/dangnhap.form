@@ -66,9 +66,6 @@
   </Layout>
   <SubComponents>
     <Component class="javax.swing.JTextField" name="txttk">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txttkActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>

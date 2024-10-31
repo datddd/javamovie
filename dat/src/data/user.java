@@ -1,23 +1,31 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package data;
 
-public class tk {
+/**
+ *
+ * @author admin
+ */
+public class user {
+
     private String id;
     private String tendn; // tên đăng nhập
     private String mk;    // mật khẩu
-    private String role;  // vai trò
+    private String name;  // vai trò
     private String email;
     private String sdt;   // số điện thoại
-    private String name;
 
     // Constructor mặc định
-    public tk() {}
+    public user() {}
 
     // Constructor đầy đủ tham số
-    public tk(String id, String tendn, String mk, String role, String email, String sdt) {
+    public user(String id, String tendn, String mk, String role, String email, String sdt) {
         this.id = id;
         this.tendn = tendn;
         this.mk = mk;
-        this.role = role;
+        this.name = role;
         this.email = email;
         this.sdt = sdt;
     }
@@ -48,12 +56,12 @@ public class tk {
         this.mk = mk;
     }
 
-    public String getRole() {
-        return role;
+    public String getname() {
+        return name;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setname(String name) {
+        this.name = name;
     }
 
     public String getEmail() {
@@ -72,13 +80,7 @@ public class tk {
         this.sdt = sdt;
     }
 
-     public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
+}
 
     
-}
+

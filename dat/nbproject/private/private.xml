@@ -3,12 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/System%20Volume%20Information(1)/dat/src/gui/tk.java</file>
-            <file>file:/D:/System%20Volume%20Information(1)/dat/src/data/DAO.java</file>
-            <file>file:/D:/System%20Volume%20Information(1)/dat/src/gui/frmMain.java</file>
-            <file>file:/D:/System%20Volume%20Information(1)/dat/src/data/Ticket.java</file>
-            <file>file:/D:/System%20Volume%20Information(1)/dat/src/gui/quanlydatdatve.java</file>
-            <file>file:/D:/System%20Volume%20Information(1)/dat/src/gui/dangnhap.java</file>
+            <file>file:/D:/baitap/project%20java/javamovie/dat/src/gui/thongtinuser.java</file>
+            <file>file:/D:/baitap/project%20java/javamovie/dat/src/data/DAOTicket.java</file>
+            <file>file:/D:/baitap/project%20java/javamovie/dat/src/gui/frmMain.java</file>
+            <file>file:/D:/baitap/project%20java/javamovie/dat/src/data/tk.java</file>
+            <file>file:/D:/baitap/project%20java/javamovie/dat/src/data/DAOuser.java</file>
+            <file>file:/D:/baitap/project%20java/javamovie/dat/src/data/user.java</file>
+            <file>file:/D:/baitap/project%20java/javamovie/dat/src/data/DAOtk.java</file>
         </group>
     </open-files>
 </project-private>

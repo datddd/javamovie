@@ -4,7 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DAO {
+public class DAOTicket {
     // Phương thức để thêm vé
     public void addTicket(Ticket ticket) {
         String sqlInsert = "INSERT INTO Tickets ( MAGHE, MAPHONG, TENPHIM, GIOCHIEU) VALUES ( ?, ?, ?, ?)";
@@ -12,8 +12,6 @@ public class DAO {
         try (Connection connection = ConnectToSQLServer.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sqlInsert)) {
 
-            // Thiết lập các tham số cho câu truy vấn
-         
             preparedStatement.setString(1, ticket.getSeat());
             preparedStatement.setString(2, ticket.getRoomName());
             preparedStatement.setString(3, ticket.getMovieName());

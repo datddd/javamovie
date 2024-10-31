@@ -9,6 +9,7 @@ package gui;
  * @author admin
  */
 import data.ConnectToSQLServer;
+import data.DAOtk;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -22,10 +23,10 @@ public class dangky extends javax.swing.JInternalFrame {
     /**
      * Creates new form dangky
      */
-    
+    private DAOtk dao;
     public dangky() {
         initComponents();
-        
+        dao = new DAOtk();
     }
 
     /**
@@ -149,23 +150,23 @@ public class dangky extends javax.swing.JInternalFrame {
 
     private void buttondkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttondkActionPerformed
         
-
-       String tenDangNhap = txtdn.getText();
+ String tenDangNhap = txtdn.getText();
         String matKhau = new String(txtmk.getPassword());
         String xacNhanMatKhau = new String(txtmk2.getPassword());
         String email = txtemail.getText();
-       
+        String sdt = txtsdt.getText();
 
-        // Kiểm tra thông tin đăng ký
-        if (tenDangNhap.isEmpty() || matKhau.isEmpty() || xacNhanMatKhau.isEmpty() || email.isEmpty()) {
+        if (tenDangNhap.isEmpty() || matKhau.isEmpty() || xacNhanMatKhau.isEmpty() || email.isEmpty() || sdt.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Vui lòng điền đầy đủ thông tin.");
         } else if (!matKhau.equals(xacNhanMatKhau)) {
             JOptionPane.showMessageDialog(null, "Mật khẩu không khớp.");
         } else {
-            if (kiemTraTonTai(tenDangNhap, email)) {
-                JOptionPane.showMessageDialog(null, "Tên đăng nhập hoặc email đã tồn tại.");
+            // Gọi phương thức từ DAOtk để kiểm tra tồn tại
+            if (dao.kiemTraTonTai(tenDangNhap, email,sdt)) {
+                JOptionPane.showMessageDialog(null, "Tên đăng nhập hoặc email đã tồn tại hoặc sdt đã tồn tại.");
             } else {
-                if (themNguoiDung(tenDangNhap, matKhau, email)) {
+                // Gọi phương thức từ DAOtk để thêm người dùng
+                if (dao.themNguoiDung(tenDangNhap, matKhau, email, sdt)) {
                     JOptionPane.showMessageDialog(null, "Đăng ký thành công!");
                     dispose();
                 } else {
@@ -188,62 +189,6 @@ public class dangky extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtsdtActionPerformed
 // Phương thức kiểm tra tên đăng nhập và email đã tồn tại
-private boolean kiemTraTonTai(String tenDangNhap, String email) {
-    String sql = "SELECT COUNT(*) FROM DangNhap WHERE TenDangNhap = ? OR Email = ?";
-
-    try (Connection conn = ConnectToSQLServer.getConnection();
-         PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
-        if (conn == null) {
-            JOptionPane.showMessageDialog(null, "Không thể kết nối đến cơ sở dữ liệu.");
-            return true;
-        }
-
-        pstmt.setString(1, tenDangNhap);
-        pstmt.setString(2, email);
-
-        try (ResultSet rs = pstmt.executeQuery()) {
-            if (rs.next()) {
-                return rs.getInt(1) > 0;
-            }
-        }
-
-    } catch (SQLException e) {
-        e.printStackTrace();
-    }
-    return false;
-}
-
-// Phương thức thêm người dùng
-private boolean themNguoiDung(String tenDangNhap, String matKhau, String email) {
-    String sql = "INSERT INTO DangNhap (TenDangNhap, MatKhau, VaiTro, Email, SDT) VALUES (?, ?, 'user', ?, ?)";
-
-    try (Connection conn = ConnectToSQLServer.getConnection();
-         PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
-        if (conn == null) {
-            JOptionPane.showMessageDialog(null, "Không thể kết nối đến cơ sở dữ liệu.");
-            return false;
-        }
-
-        String sdt = txtsdt.getText(); // Lấy số điện thoại từ trường txtsdt
-
-        pstmt.setString(1, tenDangNhap);
-        pstmt.setString(2, matKhau);
-        pstmt.setString(3, email);
-        pstmt.setString(4, sdt); // Truyền số điện thoại vào truy vấn
-
-        int rowsAffected = pstmt.executeUpdate();
-        return rowsAffected > 0;
-
-    } catch (SQLException e) {
-        e.printStackTrace();
-        return false;
-    }
-};
-
-
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttondk;
     private javax.swing.JButton buttonthoat;

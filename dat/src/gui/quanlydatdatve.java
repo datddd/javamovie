@@ -6,7 +6,7 @@ package gui;
 
 import javax.swing.JOptionPane;
 import data.Ticket;
-import data.DAO;
+import data.DAOTicket;
 import data.Ticket;
 import java.io.FileWriter;
 import java.util.List;
@@ -17,13 +17,13 @@ import javax.swing.table.DefaultTableModel;
  * @author admin
  */
 public class quanlydatdatve extends javax.swing.JInternalFrame {
-    private DAO dao;
+    private DAOTicket dao;
     /**
      * Creates new form quanlydatdatve
      */
     public quanlydatdatve() {
         initComponents();
-         dao = new DAO();
+         dao = new DAOTicket();
          
     }
 
@@ -290,13 +290,6 @@ public class quanlydatdatve extends javax.swing.JInternalFrame {
         return;  // Ngừng thực hiện nếu có thông tin không hợp lệ
     }
 
-    // Bạn có thể thêm các kiểm tra khác ở đây (ví dụ: định dạng thời gian)
-    // Kiểm tra định dạng thời gian đơn giản (nếu cần)
-    if (!isValidTime(showTime)) {
-        JOptionPane.showMessageDialog(this, "Định dạng giờ không hợp lệ. Vui lòng nhập lại.", "Lỗi", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
-
     // Tạo đối tượng vé
     Ticket ticket = new Ticket();
     ticket.setSeat(seat);
@@ -311,11 +304,7 @@ public class quanlydatdatve extends javax.swing.JInternalFrame {
 
         // TODO add your handling code here:
     }//GEN-LAST:event_buttondatveActionPerformed
-    private boolean isValidTime(String time) {
-    // Định dạng giờ đơn giản: "HH:mm"
-    String regex = "([01]?[0-9]|2[0-3]):[0-5][0-9]";
-    return time.matches(regex);
-}
+
     private void buttonhienthidanhsanhveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonhienthidanhsanhveActionPerformed
         List<Ticket> tickets = dao.getTickets();
         DefaultTableModel tableModel = (DefaultTableModel) jTable1.getModel();
